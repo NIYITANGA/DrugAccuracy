@@ -1,0 +1,43 @@
+
+DRUG PREDICTION MODEL RESULTS
+Generated on: 2025-08-10 03:01:19
+================================
+
+DATASET INFORMATION:
+- Total samples: 200
+- Features: 5
+- Target classes: 5
+- Class distribution: {'DrugY': 91, 'drugX': 54, 'drugA': 23, 'drugC': 16, 'drugB': 16}
+
+MODEL PERFORMANCE:
+Random Forest:
+- Accuracy: 0.9750
+- Precision: 0.9763
+- Recall: 0.9750
+- F1-Score: 0.9747
+
+Decision Tree:
+- Accuracy: 0.9750
+- Precision: 0.9763
+- Recall: 0.9750
+- F1-Score: 0.9747
+
+FEATURE IMPORTANCE (Random Forest):
+- Age: 0.1355
+- Sex: 0.0159
+- BP: 0.2479
+- Cholesterol: 0.0549
+- Na_to_K: 0.5458
+
+ENCODING MAPPINGS:
+- Sex: {'F': 0, 'M': 1}
+- BP: {'HIGH': 0, 'LOW': 1, 'NORMAL': 2}
+- Cholesterol: {'HIGH': 0, 'NORMAL': 1}
+- Drug: {'DrugY': 0, 'drugA': 1, 'drugB': 2, 'drugC': 3, 'drugX': 4}
+
+CONCLUSION:
+The Random Forest model achieved the best performance with 97.5% accuracy.
+The most important features for drug prediction are:
+1. Na_to_K (0.5458)
+2. BP (0.2479)
+3. Age (0.1355)
