@@ -2,6 +2,12 @@
 
 A machine learning project that predicts the most suitable drug for patients based on their medical characteristics using Random Forest classification.
 
+## 🌐 Live Demo
+
+**🚀 Try the live application:** [https://huggingface.co/spaces/TNThom/drug-prediction-system](https://huggingface.co/spaces/TNThom/drug-prediction-system)
+
+The drug prediction system is deployed and ready to use on Hugging Face Spaces! Simply input patient characteristics and get instant drug recommendations with confidence scores.
+
 ## 🎯 Project Overview
 
 This project implements a drug recommendation system that analyzes patient data to predict which drug would be most effective. The model achieves **97.5% accuracy** in predicting drug outcomes for patients based on their age, sex, blood pressure, cholesterol levels, and sodium-to-potassium ratio.
