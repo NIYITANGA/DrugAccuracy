@@ -49,6 +49,122 @@ cd scripts
 python3 2.0-tnt-drug-predictor.py
 ```
 
+### 3. Start API Server
+```bash
+cd scripts
+python3 3.0-tnt-drug-api.py
+```
+
+### 4. Use Web Interface
+Open `api_client.html` in your browser after starting the API server.
+
+## 🌐 API Documentation
+
+The project includes a REST API (`3.0-tnt-drug-api.py`) that provides programmatic access to drug predictions.
+
+### API Endpoints
+
+#### GET `/`
+Returns API information and available endpoints.
+
+#### GET `/health`
+Health check endpoint to verify API status.
+
+#### GET `/model-info`
+Returns detailed model information including features and target classes.
+
+#### POST `/predict`
+Make a single drug prediction.
+
+**Request Body:**
+```json
+{
+  "age": 45,
+  "sex": "F",
+  "bp": "HIGH",
+  "cholesterol": "HIGH",
+  "na_to_k": 25.5
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "input": {
+    "age": 45,
+    "sex": "F",
+    "bp": "HIGH",
+    "cholesterol": "HIGH",
+    "na_to_k": 25.5
+  },
+  "prediction": {
+    "recommended_drug": "DrugY",
+    "confidence": 95.2,
+    "confidence_percentage": "95.2%"
+  },
+  "all_drug_probabilities": {
+    "DrugY": "95.2%",
+    "drugX": "3.1%",
+    "drugA": "1.2%",
+    "drugB": "0.3%",
+    "drugC": "0.2%"
+  },
+  "timestamp": "2025-08-10T20:39:00.000Z"
+}
+```
+
+#### POST `/predict-batch`
+Make predictions for multiple patients.
+
+**Request Body:**
+```json
+{
+  "patients": [
+    {
+      "age": 45,
+      "sex": "F",
+      "bp": "HIGH",
+      "cholesterol": "HIGH",
+      "na_to_k": 25.5
+    },
+    {
+      "age": 30,
+      "sex": "M",
+      "bp": "NORMAL",
+      "cholesterol": "NORMAL",
+      "na_to_k": 15.0
+    }
+  ]
+}
+```
+
+### Input Validation
+
+- **Age**: Integer between 0-120
+- **Sex**: "M" (Male) or "F" (Female)
+- **BP**: "LOW", "NORMAL", or "HIGH"
+- **Cholesterol**: "NORMAL" or "HIGH"
+- **Na_to_K**: Float between 0-50
+
+### Using the API
+
+1. **Start the API server:**
+   ```bash
+   cd scripts
+   python3 3.0-tnt-drug-api.py
+   ```
+
+2. **Test with curl:**
+   ```bash
+   curl -X POST http://localhost:5000/predict \
+     -H "Content-Type: application/json" \
+     -d '{"age": 45, "sex": "F", "bp": "HIGH", "cholesterol": "HIGH", "na_to_k": 25.5}'
+   ```
+
+3. **Use the web interface:**
+   Open `api_client.html` in your browser for a user-friendly interface.
+
 ## 📁 Project Structure
 
 ```
@@ -57,7 +173,10 @@ DrugAccuracy/
 │   └── drug200.csv                    # Dataset
 ├── scripts/
 │   ├── 1.0-tnt-drug-prediction.py     # Main training script
-│   └── 2.0-tnt-drug-predictor.py      # Interactive prediction tool
+│   ├── 2.0-tnt-drug-predictor.py      # Interactive prediction tool
+│   └── 3.0-tnt-drug-api.py           # REST API server
+├── notebooks/
+│   └── drug_prediction_analysis.ipynb # Jupyter notebook analysis
 ├── output/
 │   ├── random_forest_drug_model.pkl   # Trained model
 │   ├── label_encoders.pkl             # Categorical encoders
@@ -65,6 +184,8 @@ DrugAccuracy/
 ├── results/
 │   ├── drug_prediction_results.txt    # Detailed results
 │   └── model_comparison.csv           # Performance metrics
+├── api_client.html                    # Web interface for API
+├── requirements.txt                   # Python dependencies
 ├── MODEL_SUMMARY.md                   # Technical documentation
 └── readme.md                          # This file
 ```
